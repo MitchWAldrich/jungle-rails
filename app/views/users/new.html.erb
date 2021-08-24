@@ -1,0 +1,28 @@
+<h1>Sign up</h1>
+<div class="container">
+  <div class="row vertical-offset-100">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+          <%= form_for :user, url: '/users' do |f| %>
+
+            <%= f.text_field :firstname, placeholder: "First name", class: "form-control" %>
+            <br>
+            <%= f.text_field :lastname, placeholder: "Last name", class: "form-control" %>
+            <br>
+            <%= f.text_field :email, placeholder: "E-mail", class: "form-control" %>
+            <br>
+            <%= f.password_field :password, placeholder: "Password", class: "form-control"  %>
+            <br>
+            <%= f.password_field :password_confirmation, placeholder: "Password confirmation", class: "form-control"  %>
+            <br>
+            <%= f.submit "Submit", class: 'btn btn-lg btn-success btn-block' %>
+          
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
