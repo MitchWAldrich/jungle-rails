@@ -45,7 +45,36 @@ RSpec.describe User, type: :model do
       @user = User.new(firstname: 'Jen', lastname: 'Krabbe', email: 'jensemail@email.com', password: 'passwo', password_confirmation: 'passwo')
       expect(@user).to_not be_valid 
     end
+  
+  end
 
+  describe '.authenticate_with_credentials' do
+    
+    it 'should successfully login if correct email and password are provided' do
+      @user = User.new(firstname: 'Andrew', lastname: 'Bray', email: 'andrew@email.com', password:'password', password_confirmation: 'password')
+      @user.save
+      expect(User.authenticate_with_credentials('andrew@email.com', 'password')).to eq(@user)
+    end
+
+    it 'should not login if email or password is incorrect' do
+      @user = User.new(firstname: 'Mathias', lastname: 'Memmel', email: 'mathias@email.com', password:'password', password_confirmation: 'password')
+      @user.save
+      expect(User.authenticate_with_credentials('mathias1@email.com', 'password')).to eq(nil)
+      expect(User.authenticate_with_credentials('mathias@email.com', 'passwords')).to eq(nil)
+    end
+
+    it 'should successfully login if whitespace around email' do
+      @user = User.new(firstname: 'Lindsay', lastname: 'McIntyre', email: 'lindsay@email.com', password:'password', password_confirmation: 'password')
+      @user.save
+      expect(User.authenticate_with_credentials('  lindsay@email.com  ', 'password')).to eq(@user)
+    end
+
+    it 'should successfully login if email is typed with wrong casing' do
+      @user = User.new(firstname: 'Jess', lastname: 'Wright', email: 'jess@email.com', password:'password', password_confirmation: 'password')
+      @user.save
+      expect(User.authenticate_with_credentials('Jess@email.com', 'password')).to eq(@user)
+    end
+    
   end
   
 end
