@@ -7,10 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+    
   <%= render 'layouts/top_nav' %>
 
   <main class="container">
+    <div style="text-align: right">
+      <% if current_user %>
+       <h4>Welcome, <%= current_user.firstname %> <%= current_user.lastname %>!</h4>
+      <% end %>
+    </div>
     <%= yield %>
   </main>
 
