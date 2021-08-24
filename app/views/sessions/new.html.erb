@@ -1,0 +1,23 @@
+<h1>Login</h1>
+<br>
+<%= form_tag '/login' do %>
+  
+<div class="container">
+  <div class="row vertical-offset-100">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+          <%= text_field_tag :email, "", placeholder: "E-mail", class: "form-control" %>
+          <br>
+          <%= password_field_tag :password, "", placeholder: "Password", class: "form-control" %>
+          <br>
+          <%= submit_tag "Submit", class: 'btn btn-lg btn-success btn-block' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
